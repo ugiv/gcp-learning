@@ -45,7 +45,7 @@ app.post('/add', (req, res) => {
   }
 });
 
-app.get('/note-list', (req, res) => {
+app.get('/list', (req, res) => {
   try {
     pool.query('SELECT * FROM daily_note', (error, results) => {
       if (error){
