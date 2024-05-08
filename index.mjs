@@ -58,6 +58,19 @@ app.get('/list', (req, res) => {
   }
 });
 
+app.get('/list/:id', (req, res) => {
+  try {
+    pool.query('SELECT * FROM daily_note WHERE id = $1', [req.params.id], (error, results) => {
+      if (error) {
+        throw error;
+      };
+      res.status(200).send(results.rows);
+    })
+  } catch(error){
+    console.log(error);
+  };
+});
+
 const port = parseInt(process.env.PORT) || 8080;
 app.listen(port, async () => {
   console.log('process.env: ', process.env);
