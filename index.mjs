@@ -32,8 +32,9 @@ app.get('/', async (req, res) => {
 
 app.post('/add', (req, res) => {
   const { title, description } = req.body;
+  const randomId = Math.floor(Math.random() * 10000);
   try {
-    pool.query('INSERT INTO daily_note VALUES($1, $2)', [title, description], (error, results) => {
+    pool.query('INSERT INTO daily_note VALUES($1, $2, $3)', [randomId, title, description], (error, results) => {
       if (error) {
         throw error;
       };
